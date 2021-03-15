@@ -21,11 +21,9 @@ class PhotosController < ApplicationController
       end
     
       post "/photos" do
-        @photo = Photo.new
-        @photo.url = params[:file][:filename]
-        @photo.file = params[:file][:tempfile]
-        #  @photo.caption = params[:photo][:caption]
-        @photo.save
+        @filename = params[:file][:filename]
+        file = params[:file][:tempfile]
+        @photo= Photo.create(url: @filename)
         current_user.photos << @photo
     
         File.open("./public/images/#{@photo.url}", 'wb') do |f|
