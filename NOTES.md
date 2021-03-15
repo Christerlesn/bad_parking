@@ -18,7 +18,7 @@ VIEWS
         index(all posts)
         log out
     photo
-        create photo (title, comment section)
+        create photo (title, ohoto, comment)
         show all photos
         update/edit current_user photo
         delete current_user photo
