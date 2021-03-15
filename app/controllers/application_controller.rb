@@ -27,59 +27,44 @@ class ApplicationController < Sinatra::Base
   # # session.destroy
   # end
 
-  get "/photo/new" do
+  get "/photos" do
+    @photos = Photo.all
+    @users = User.all
+    erb :"photos/photo_index"
+  end
+
+  get "/photos/new" do
     erb :"photos/photo_new"
   end
 
-  post "/photos" do
+  get "/photos/:id" do
+    @photo = Photo.find_by(params[:id])
+    erb :"photos/photo"
+  end
 
+  get "/photos/:id/edit" do
+    @photo = Photo.find_by(params[:id])
+    erb :"photos/photo_edit"
+  end
+
+  post "/photos" do
     @filename = params[:file][:filename]
     file = params[:file][:tempfile]
+    @photo = Photo.create(:url => @filename)
 
-    File.open("./public/#{@filename}", 'wb') do |f|
+    File.open("./public/images/#{@photo.url}", 'wb') do |f|
       f.write(file.read)
     end
     erb :"photos/photo_index"
   end
 
+  post "/photos/:id" do
+    @photo = Photo.find_by(params[:id])
+    @photo.caption = ['photo']['caption']
+    redirect to "/photos/#{@photo.id}"
+  end
 
 
-
-
-
-
-
-
-
-
-  
-  # post "/photo/index" do
-  #   @filename = params[:file][:filename]
-  #   file = params[:file][:tempfile]
-  #   @photo = Photo.create!(url:@filename)
-  #   current_user.photos << @photo
-
-  #   File.open("./public/#{@photo.url}", 'wb') do |f|
-  #     f.write(file.read)
-  #   end
-
-  #   redirect to "/photos/#{@photo.id}"
-  # end
-
-  # get "/photo/:id" do
-  #   erb :"photos/photo"
-  # end
-
-  # get "/photo/:id/edit" do
-  #   erb :"photos/photo_edit"
-  # end
-
-  # post '/photo/:id' do
-  #   @photo = Photo.find(params[:id])
-  #   @photo.name = params['photo']['name']
-  #   @photo.save
-  #   redirect to "/photo/#{@photo.id}"
-  # end
 
   # delete "/photo/:id/delete" do
   #   #redirect to "/photo/index"

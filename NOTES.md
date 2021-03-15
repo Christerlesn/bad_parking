@@ -1,4 +1,7 @@
-Between the Lines Pictures
+Websites I used to help me
+
+https://github.com/carrierwaveuploader/carrierwave
+
 
 MODELS
     user
