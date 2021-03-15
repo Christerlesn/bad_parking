@@ -9,24 +9,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "something_secretive"
   end
 
-  # get "/" do
-  #   erb :"users/index"
-  # end
-
-  # get "/signup" do
-  #   erb :"users/sign_up"
-  #       # POST to "/photo/index"
-  # end
-
-  # get "/login" do
-  #   erb :"users/login"
-  #   # POST to "/photo/index"
-  # end
-
-  # post "/logout" do
-  # # session.destroy
-  # end
-
   helpers do
 
     def logged_in?
