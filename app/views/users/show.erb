@@ -1,0 +1,5 @@
+<h1><%= @user.username %> you are online! </h1>
+<% @user.photos.each do |photo| %>
+<%= photo.name %>
+<%= photo.caption %>
+<% end %>

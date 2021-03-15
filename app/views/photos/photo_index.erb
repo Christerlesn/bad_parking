@@ -1,6 +1,6 @@
 <ul>
-<% @images.each do |image| %>
-  <li><a href="/images/<%= image.id %>"><%= image.caption %></a></li>
+<% @photos.each do |photo| %>
+  <li><a href="/photos/<%= photo.id %>"><%= photo.caption %></a></li>
 
 <img src="/<%= @filename %>" />
 

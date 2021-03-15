@@ -9,6 +9,10 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "something_secretive"
   end
 
+  get "/" do
+    erb :index
+  end
+
   helpers do
 
     def logged_in?

@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Park Between the Lines Welcomes You!</title>
+</head>
+
+<body>
+<h2> Please Sign up or Log In:</h2>
+
+<nav>
+  <% if logged_in? %>
+  <p> Welcome,
+  <%= current_user.username %></p>
+  <a href="/photos/new">Create Photo</a>
+
+  <a href="/logout"> Log Out </a>
+
+  <% else %>
+  <a href="/signup">Sign Up</a><br>
+  <a href="/login">Log In</a>
+  <% end %>
+</nav>
+</body>
+</html>
