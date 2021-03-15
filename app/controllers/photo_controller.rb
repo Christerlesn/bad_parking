@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
         File.open("./public/images/#{@photo.url}", 'wb') do |f|
           f.write(file.read)
         end
-        redirect to "/photos/#{photo.id}"
+        redirect to "/photos/#{@photo.id}"
       end
     
       post "/photos/:id" do
