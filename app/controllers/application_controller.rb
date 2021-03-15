@@ -9,68 +9,81 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "something_secretive"
   end
 
-  get "/" do
-    erb :"users/index"
+  # get "/" do
+  #   erb :"users/index"
+  # end
+
+  # get "/signup" do
+  #   erb :"users/sign_up"
+  #       # POST to "/photo/index"
+  # end
+
+  # get "/login" do
+  #   erb :"users/login"
+  #   # POST to "/photo/index"
+  # end
+
+  # post "/logout" do
+  # # session.destroy
+  # end
+
+  get "/photo/new" do
+    erb :"photos/photo_new"
   end
 
-  get "/signup" do
-    erb :"users/sign_up"
-        # POST to "/photo/index"
-  end
+  post "/photos" do
 
-  get "/login" do
-    erb :"users/login"
-    # POST to "/photo/index"
-  end
+    @filename = params[:file][:filename]
+    file = params[:file][:tempfile]
 
-  post "/logout" do
-  # session.destroy
-  end
-
-  get "/photo/index" do
-    #Shows all the photos
-    @photos = Photo.all
-    @users = User.all
+    File.open("./public/#{@filename}", 'wb') do |f|
+      f.write(file.read)
+    end
     erb :"photos/photo_index"
   end
 
-  post "/photo/index" do
-    @filename = params[:file][:filename]
-    file = params[:file][:tempfile]
-    @photo = Photo.create!(url:@filename)
-    current_user.photos << @photo
 
-    File.open("./public/#{@photo.url}", 'wb') do |f|
-      f.write(file.read)
-    end
 
-    redirect to "/photos/#{@photo.id}"
-  end
 
-  get "/photo/new" do
-    @photo = Photo.new
-    erb :"photos/photo_new"
-    #POST to "/photo/index"
-  end
 
-  get "/photo/:id" do
-    erb :"photos/photo"
-  end
 
-  get "/photo/:id/edit" do
-    erb :"photos/photo_edit"
-  end
 
-  post '/photo/:id' do
-    @photo = Photo.find(params[:id])
-    @photo.name = params['photo']['name']
-    @photo.save
-    redirect to "/photo/#{@photo.id}"
-  end
 
-  delete "/photo/:id/delete" do
-    #redirect to "/photo/index"
-  end
+
+
+
+  
+  # post "/photo/index" do
+  #   @filename = params[:file][:filename]
+  #   file = params[:file][:tempfile]
+  #   @photo = Photo.create!(url:@filename)
+  #   current_user.photos << @photo
+
+  #   File.open("./public/#{@photo.url}", 'wb') do |f|
+  #     f.write(file.read)
+  #   end
+
+  #   redirect to "/photos/#{@photo.id}"
+  # end
+
+  # get "/photo/:id" do
+  #   erb :"photos/photo"
+  # end
+
+  # get "/photo/:id/edit" do
+  #   erb :"photos/photo_edit"
+  # end
+
+  # post '/photo/:id' do
+  #   @photo = Photo.find(params[:id])
+  #   @photo.name = params['photo']['name']
+  #   @photo.save
+  #   redirect to "/photo/#{@photo.id}"
+  # end
+
+  # delete "/photo/:id/delete" do
+  #   #redirect to "/photo/index"
+  # end
 
   helpers do
 
