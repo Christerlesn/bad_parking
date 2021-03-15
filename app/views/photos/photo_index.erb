@@ -1,1 +1,7 @@
-<h1> All the Photo Posts Go Here!</h1>
+<h1> All the Photo Posts</h1>
+<% @photos.each do |p|
+    <li><a href="/photo/<%= photo.id %>"><%= photo.name %></a></li>
+<% end %>
+</ul>
+
+<a class="button" href="/">Main</a>

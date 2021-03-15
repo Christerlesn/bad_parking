@@ -29,21 +29,22 @@ class ApplicationController < Sinatra::Base
 
   get "/photo/index" do
     #Shows all the photos
+    @photos = Photo.all
+    @users = User.all
     erb :"photos/photo_index"
   end
 
   post "/photo/index" do
-    #Shows all the photos
-    if params[:photo] && params[:photo][:filename]
-      filename = params[:photo][:filename]
-      file = params[:photo][:tempfile]
-      path = "./public/images/#{filename}"
+    @filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+    @photo = Photo.create!(url:@filename)
+    current_user.photos << @photo
 
-      File.open(path, "wb") do |f|
-        f.write(file.read)
-      end
-    erb :"photos/photo_index"
+    File.open("./public/#{@photo.url}", 'wb') do |f|
+      f.write(file.read)
     end
+
+    redirect to "/photos/#{@photo.id}"
   end
 
   get "/photo/new" do
@@ -60,8 +61,11 @@ class ApplicationController < Sinatra::Base
     erb :"photos/photo_edit"
   end
 
-  patch "/photo/:id/edit" do
-    #POST to "/photo/:id"
+  post '/photo/:id' do
+    @photo = Photo.find(params[:id])
+    @photo.name = params['photo']['name']
+    @photo.save
+    redirect to "/photo/#{@photo.id}"
   end
 
   delete "/photo/:id/delete" do

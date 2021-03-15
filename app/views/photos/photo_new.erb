@@ -1,8 +1,18 @@
-<h1> Add a new photo</h1>
+<html>
+<head>
+<title>Add a new photo</title>
+</head>
+
+<h1> Add a Photo</h1>
 <form action="/photo/index" method="POST" enctype="multipart/form-data">
 
-<input type="file" name="data">
-<input type="submit" value="Upload">
+<input type="file" name="file"><br>
 
+<label for="caption">Description:</label>
+<input type="text" name="caption"><br>
+
+<input type="submit" value="Upload Photo">
 
 </form>
+
+</html>

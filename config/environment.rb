@@ -1,3 +1,8 @@
+require "bundler/setup"
+require "carrierwave"
+require "carrierwave/orm/activerecord"
+Bundler.require
+
 ENV['SINATRA_ENV'] ||= "development"
 
 require 'bundler/setup'

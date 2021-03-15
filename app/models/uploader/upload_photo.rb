@@ -1,3 +1,3 @@
-class ImagesUploader < CarrierWave::Uploader::Base
+class PhotosUploader < CarrierWave::Uploader::Base
     storage :file
 end
