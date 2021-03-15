@@ -34,10 +34,20 @@ class ApplicationController < Sinatra::Base
 
   post "/photo/index" do
     #Shows all the photos
+    if params[:photo] && params[:photo][:filename]
+      filename = params[:photo][:filename]
+      file = params[:photo][:tempfile]
+      path = "./public/images/#{filename}"
+
+      File.open(path, "wb") do |f|
+        f.write(file.read)
+      end
     erb :"photos/photo_index"
+    end
   end
 
   get "/photo/new" do
+    @photo = Photo.new
     erb :"photos/photo_new"
     #POST to "/photo/index"
   end
