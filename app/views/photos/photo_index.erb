@@ -1,8 +1,10 @@
-<h1>Is This the Photo?</h1>
+<ul>
+<% @images.each do |image| %>
+  <li><a href="/images/<%= image.id %>"><%= image.caption %></a></li>
 
-<p>Caption: <%= @caption %> </p><br>
-<br>
 <img src="/<%= @filename %>" />
 
+<% end %>
+</ul>
 
 <a class="button" href="/">Main</a>

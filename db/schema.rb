@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_044520) do
+ActiveRecord::Schema.define(version: 2021_03_15_064431) do
 
   create_table "photos", force: :cascade do |t|
+    t.string "name"
     t.string "url"
-    t.text "file"
-    t.text "caption"
+    t.string "file"
+    t.string "caption"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
