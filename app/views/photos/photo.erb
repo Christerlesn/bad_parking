@@ -1,8 +1,21 @@
-<h1><%= @photo.caption %></h1>
-<%= @photo.url %>
-<img src="/<%= @photo.url %>" />
+<html>
+    <head>
+        <title>Show Photo</title>
+    </head>
+    <body>
+        <h1>See Photo</h1>
+         <%= @photo.url %>
+         <img src="/<%= @photo.url %>" />
+
+<form method="post" action="/photos/<%=@photo.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Photo">
+</form>
+
+<form method="patch" action="/photos/<%=@photo.id%>/edit">
+<input id="hidden" type="hidden" name="_method" value="EDIT">
+<a href="/photos/<%=@photo.id%>/edit">Edit Photo</a>
 
 
-
-
-<img src="/<%= @file %>" />
+    </body>
+</html>

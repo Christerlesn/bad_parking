@@ -6,14 +6,14 @@
 <h1> Add a Photo</h1>
 <form action="/photos" method="POST" enctype="multipart/form-data">
 
-<label for="name">Title:</label>
+<label for="name">Name:</label>
 <input type="string" name="name"><br>
 
 <label for="caption">Find your file:</label>
 <input type="file" name="file"><br>
 
 <label for="caption">Description:</label>
-<input type="text" name="caption"<br>
+<textarea id="caption" name="caption" rows="4" cols="10"></textarea><br>
 
 <input type="submit" value="Upload Photo">
 
