@@ -8,8 +8,9 @@
          <img src="/<%= @photo.image %>" />
 
 <form method="post" action="/photos/<%=@photo.id%>/delete">
+  
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Photo">
+  <input type="submit" value="Delete Photo"><br>
 </form>
 
 <form method="patch" action="/photos/<%=@photo.id%>/edit">

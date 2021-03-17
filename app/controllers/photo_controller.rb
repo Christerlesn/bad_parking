@@ -22,12 +22,12 @@ class PhotosController < ApplicationController
     end
 
     post '/photos' do
-      photo = Photo.new
-      photo.image = params[:file]
+      @photo = Photo.new
+      @photo.image = params[:file][:filename]
       # params[:file]
-      photo.caption = params[:caption]
-      photo.save
-      current_user.photos << photo
+      @photo.caption = params[:caption]
+      @photo.save
+      current_user.photos << @photo
       
       # @filename = params[:file][:filename]
       # file = params[:file][:tempfile]
