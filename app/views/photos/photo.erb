@@ -4,8 +4,8 @@
     </head>
     <body>
         <h1>See Photo</h1>
-         <%= @photo.url %>
-         <img src="/<%= @photo.url %>" />
+         <%= @photo.caption %>
+         <img src="/<%= @photo.image %>" />
 
 <form method="post" action="/photos/<%=@photo.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">

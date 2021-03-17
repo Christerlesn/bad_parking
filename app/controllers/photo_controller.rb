@@ -12,6 +12,7 @@ class PhotosController < ApplicationController
   
     get '/photos/:id' do
       @photo = Photo.find_by(params[:id])
+      
       erb :"photos/photo"
     end
   
@@ -21,28 +22,32 @@ class PhotosController < ApplicationController
     end
 
     post '/photos' do
-      puts "===================================="
-      # puts params.inspect
-      puts "===================================="
-      @filename = params[:file][:filename]
-      file = params[:file][:tempfile]
-      @photo= Photo.create!(url:@filename)
-      current_user.photos << @photo
+      photo = Photo.new
+      photo.image = params[:file]
+      # params[:file]
+      photo.caption = params[:caption]
+      photo.save
+      current_user.photos << photo
+      
+      # @filename = params[:file][:filename]
+      # file = params[:file][:tempfile]
+      # @photo = Photo.create(image: @filename)
+      # current_user.photos << @photo
 
-      File.open("./public/images/#{@photo.url}", 'wb') do |f|
-        f.write(file.read)
-      end
+      # File.open("./public/images/#{@photo.image}", 'wb') do |f|
+      #   f.write(file.read)
+      # end
       
       redirect to "/photos/#{@photo.id}"
     end
     
   
-    post '/photos/:id' do
-      @photo = Photo.find(params[:id])
-      @photo.name = params['photo']['name']
-      @photo.save
-      redirect to "/photos/#{@photo.id}"
-    end
+    # post '/photos/:id' do
+    #   @photo = Photo.find(params[:id])
+    #   @photo.name = params['photo']
+    #   @photo.save
+    #   redirect to "/photos/#{@photo.id}"
+    # end
 
     delete "/photos/:id/delete" do
       @photo = Photo.find_by_id(params[:id])
