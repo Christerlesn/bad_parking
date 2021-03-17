@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title>Show Photo</title>
+        <title>You Selected:</title>
     </head>
     <body>
         <h1>See Photo</h1>
-         <%= @photo.caption %>
-         <img src="/<%= @photo.image %>" />
+         <%= @photo.url %>
+         <img src='/<%= @photo.url %>'/>
 
 <form method="post" action="/photos/<%=@photo.id%>/delete">
   
@@ -15,8 +15,11 @@
 
 <form method="patch" action="/photos/<%=@photo.id%>/edit">
 <input id="hidden" type="hidden" name="_method" value="EDIT">
-<a href="/photos/<%=@photo.id%>/edit">Edit Photo</a>
+<a href="/photos/<%=@photo.id%>/edit">Edit Photo</a><br>
 
 
     </body>
+    
+ <a class="button" href="/">Home</a><br>
+<a class="button" href="/photos">Photos</a>
 </html>
