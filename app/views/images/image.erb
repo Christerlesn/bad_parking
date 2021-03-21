@@ -3,10 +3,11 @@
         <title>You Selected:</title>
     </head>
     <body>
-        <h1>See Image</h1>
-         <%= @image.url %>
-         <img src="/<%= @image.url %>"/>
-         <%= @image.caption %>
+        <h3><%= @image.caption %></h3><br>
+        
+         <img src="/<%= @image.url %>"/><br>
+         
+        <%= @image.url %>
 
 <form action="/images/<%=@image.id%>/delete" method="post">
   

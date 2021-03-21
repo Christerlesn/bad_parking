@@ -18,8 +18,16 @@ class ImagesController < ApplicationController
     end
   
     get '/images/:id/edit' do
-      @image = Image.find(params[:id])
-      erb :"images/image_edit"
+      if logged_in?
+        @image = Image.find_by(params[:id])
+        if @image
+          erb :"images/image_edit"
+        else
+          redirect to '/images'
+        end
+      else
+        redirect "/login"
+      end
     end
 
     post '/images' do
@@ -39,12 +47,18 @@ class ImagesController < ApplicationController
   end
     
   
-    # post '/photos/:id' do
-    #   @photo = Photo.find(params[:id])
-    #   @photo.name = params['photo']
-    #   @photo.save
-    #   redirect to "/photos/#{@photo.id}"
-    # end
+    post '/images/:id' do
+      @image = Image.find(params[:id])
+      @image.caption = params[:caption]
+      @image.url = params[:file][:filename]
+      file = params[:file][:tempfile]
+      @image.save
+      
+      File.open("./public/#{@image.url}", 'wb') do |f|
+        f.write(file.read)
+      end
+      redirect to "/images/#{@image.id}"
+    end
 
     delete "/images/:id/delete" do
       @image = Image.find_by_id(params[:id])
