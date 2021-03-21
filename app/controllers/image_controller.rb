@@ -47,22 +47,26 @@ class ImagesController < ApplicationController
   end
     
   
-    post '/images/:id' do
-      @image = Image.find(params[:id])
+  post '/images/:id' do
+    @image = Image.find(params[:id])
       
-      @image.update(:url => params[:file][:filename], :caption => params[:caption])
+    if @image && @image.update(:url => params[:file][:filename], :caption => params[:caption])
       
       # file = params[:file][:tempfile]
 
-      File.open("./public/#{@image.url}", 'wb') do |f|
-        f.write(file.read)
-      end
+      # File.open("./public/#{@image.url}", 'wb') do |f|
+      #   f.write(file.read)
+  
       redirect to "/images/#{@image.id}"
+    else
+      redirect to '/images'
     end
+  end
+
 
     delete "/images/:id/delete" do
       @image = Image.find_by_id(params[:id])
-      @Image.delete
+      @Image.destroy
       
       redirect to "/image/index"
     end
