@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
       @filename = params[:file][:filename]
       file = params[:file][:tempfile]
       
-      @image= Image.create!(url:@filename, )
+      @image= Image.create!(url:@filename, caption:params[:caption])
       current_user.images << @image
 
        File.open("./public/#{@image.url}", 'wb') do |f|
