@@ -49,11 +49,11 @@ class ImagesController < ApplicationController
   
     post '/images/:id' do
       @image = Image.find(params[:id])
-      @image.caption = params[:caption]
-      @image.url = params[:file][:filename]
-      file = params[:file][:tempfile]
-      @image.save
       
+      @image.update(:url => params[:file][:filename], :caption => params[:caption])
+      
+      # file = params[:file][:tempfile]
+
       File.open("./public/#{@image.url}", 'wb') do |f|
         f.write(file.read)
       end
