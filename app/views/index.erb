@@ -7,9 +7,9 @@
 <h1>Park Between the Lines Welcomes You</h1>
 <nav>
   <% if logged_in? %>
-  <p> Welcome,
-  <%= current_user.username %></p>
+  <h2> Greetings, <%= current_user.username %>. What would you like to do?</h2>
   <a href="/images/new">Create A New Image</a><br>
+  <a class="button" href="/images"> All Images</a><br>
   <a href="/logout"> Log Out </a>
 
   <% else %>
