@@ -29,6 +29,7 @@ class ImagesController < ApplicationController
         
         File.open("./public/#{@image.url}", 'wb') do |f|
           f.write(file.read)
+        end
 
       # @photo = Photo.new
       # @photo.image = params[:file][:filename]

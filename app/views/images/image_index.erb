@@ -1,0 +1,14 @@
+<h2>WELCOME </h2>
+
+<ul>
+<% @images.each do |image| %>
+  <li><a href="/images/<%= image.id %>"></a></li>
+  <li><%= image.caption %></li>
+<% end %>
+</ul>
+<br>
+
+
+<a class="button" href="/">Home</a>
+<a class="button" href="/photos">Images</a>
+

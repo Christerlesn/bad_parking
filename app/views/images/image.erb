@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>You Selected:</title>
+    </head>
+    <body>
+        <h1>See Image</h1>
+         <%= @image.url %>
+         <img src='/<%= @image.url %>'/>
+
+<form action="/images/<%=@image.id%>/delete" method="post">
+  
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Image"><br>
+</form>
+
+<form method="patch" action="/images/<%=@image.id%>/edit">
+<input id="hidden" type="hidden" name="_method" value="EDIT">
+<a href="/images/<%=@image.id%>/edit">Edit Image</a><br>
+
+
+    </body>
+    
+ <a class="button" href="/">Home</a><br>
+<a class="button" href="/images">Images</a>
+</html>
