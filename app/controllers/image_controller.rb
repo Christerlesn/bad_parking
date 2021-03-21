@@ -65,10 +65,10 @@ class ImagesController < ApplicationController
 
 
     delete "/images/:id/delete" do
-      @image = Image.find_by_id(params[:id])
-      @Image.destroy
+      @image = Image.find(params[:id])
+      @image.destroy
       
-      redirect to "/image/index"
+      redirect to "/images"
     end
 
 

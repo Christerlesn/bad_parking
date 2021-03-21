@@ -1,4 +1,6 @@
-<h2>WELCOME </h2>
+<h2>WELCOME <%= current_user.username %></h2>
+
+<h3>All Posts:</h3>
 
 <ul>
 <% @images.each do |image| %>
