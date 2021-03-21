@@ -3,3 +3,11 @@
 <%= image.name %>
 <%= image.caption %>
 <% end %>
+
+ Welcome, <%= @user.username %>
+   
+  <ul>
+    <% @user.images.each do |image| %>
+      <li><a href="/images/<%= image.id %>" style="color: #ffffff"><img src="/<%= image.url %>" class="img-fluid img-thumbnail" style="width: 200px;"/></a></li>
+    <% end %>
+  </ul>

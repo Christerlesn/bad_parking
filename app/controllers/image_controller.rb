@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
     end
   
     get '/images/:id' do
-      @image = Image.find_by(params[:id])
+      @image = Image.find(params[:id])
       erb :"images/image"
     end
   
@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
     post '/images' do
       
       @filename = params[:file][:filename]
-        image = params[:file][:tempfile]
+        file = params[:file][:tempfile]
         @image= Image.create!(url:@filename)
         current_user.images << @image
         
