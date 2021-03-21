@@ -1,3 +1,5 @@
+require './app/controllers/application_controller'
+
 class ImagesController < ApplicationController
 
   get '/images' do
@@ -24,7 +26,11 @@ class ImagesController < ApplicationController
       
       @filename = params[:file][:filename]
         file = params[:file][:tempfile]
-        @image= Image.create!(url:@filename)
+        @image= Image.new
+        
+        @image.file = params[:file]
+        @image.caption = "Temporary caption"
+        @image.save
         current_user.images << @image
         
         File.open("./public/#{@image.url}", 'wb') do |f|

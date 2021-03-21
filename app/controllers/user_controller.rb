@@ -1,3 +1,5 @@
+require './app/controllers/application_controller'
+
 class UsersController < ApplicationController
     
   get '/signup' do

@@ -2,7 +2,7 @@
 
 <ul>
 <% @images.each do |image| %>
-  <li><a href="/images/<%= image.id %>"></a></li>
+  <li><a href="/images/<%= image.id %>"><%= image.name %></a>></li>
   <li><%= image.caption %></li>
 <% end %>
 </ul>
