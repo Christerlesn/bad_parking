@@ -23,19 +23,18 @@ class ImagesController < ApplicationController
     end
 
     post '/images' do
-      
+      puts "===================================="
+      # puts params.inspect
+       puts "===================================="
       @filename = params[:file][:filename]
-        file = params[:file][:tempfile]
-        @image= Image.new
+      file = params[:file][:tempfile]
+      @image= Image.create!(url:@filename)
+      current_user.images << @image
+
+       File.open("./public/#{@image.url}", 'wb') do |f|
+        f.write(file.read)
+      end
         
-        @image.file = params[:file]
-        @image.caption = "Temporary caption"
-        @image.save
-        current_user.images << @image
-        
-        File.open("./public/#{@image.url}", 'wb') do |f|
-          f.write(file.read)
-        end
 
       # @photo = Photo.new
       # @photo.image = params[:file][:filename]
@@ -45,8 +44,8 @@ class ImagesController < ApplicationController
       # @photo.save
       # current_user.photos << @photo
 
-      redirect to "/images/#{@image.id}"
-    end
+     redirect to "/images/#{@image.id}"
+  end
     
   
     # post '/photos/:id' do
