@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
       if !logged_in?
         redirect "/login"
       else
-        if image = current_user.images.find(params[:id])
+        if @image = current_user.images.find(params[:id])
           erb :"images/image_edit"
         else
           redirect to '/images'
@@ -50,10 +50,10 @@ class ImagesController < ApplicationController
   end
     
   
-  post '/images/:id' do
+  patch '/images/:id' do
     @image = Image.find(params[:id])
       
-    if @image && @image.update(:url => params[:file][:filename], :caption => params[:caption])
+    if @image.update(:caption => params[:caption])
       
       # file = params[:file][:tempfile]
 
