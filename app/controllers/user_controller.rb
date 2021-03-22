@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     
       get '/login' do
         if logged_in?
-          redirect "/images"
+          redirect "/"
         else
           erb :'users/login'
         end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         user = User.find_by(:username => params[:username])
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
-          redirect to "/images"
+          redirect to "/"
         else
           redirect to '/signup'
         end

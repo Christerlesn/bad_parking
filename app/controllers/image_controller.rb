@@ -29,6 +29,7 @@ class ImagesController < ApplicationController
         if @image.user_id == current_user.id
           erb :"images/image_edit"
         else
+          #flash message could go here that says "Sorry, you cannot edit this image. It belongs to a different user."
           redirect '/images'
         end
       end
