@@ -9,7 +9,11 @@ class ImagesController < ApplicationController
     end
   
     get '/images/new' do
-      erb :"images/image_new"
+      if !logged_in?
+        redirect "/login"
+      else
+        erb :"images/image_new"
+      end
     end
   
     get '/images/:id' do
@@ -18,15 +22,14 @@ class ImagesController < ApplicationController
     end
   
     get '/images/:id/edit' do
-      if logged_in?
-        @image = Image.find_by(params[:id])
-        if @image
+      if !logged_in?
+        redirect "/login"
+      else
+        if image = current_user.images.find(params[:id])
           erb :"images/image_edit"
         else
           redirect to '/images'
         end
-      else
-        redirect "/login"
       end
     end
 
