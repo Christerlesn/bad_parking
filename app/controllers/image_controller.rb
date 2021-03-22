@@ -70,10 +70,18 @@ class ImagesController < ApplicationController
 
 
     delete "/images/:id/delete" do
-      @image = Image.find(params[:id])
-      @image.destroy
-      
-      redirect to "/images"
+      if !logged_in?
+        redirect "/login"
+      else
+        @image = Image.find(params[:id])
+        if @image.user_id == current_user.id
+          @image.destroy
+          redirect to "/images"
+        else
+          #flash message "Sorry, you cannot delete this picture."
+          redirect to "/images"
+        end
+      end
     end
 
 

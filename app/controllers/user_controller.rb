@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect to '/images'
       else
-        #flash message could go here: "Sorry, this email/username cannot be used. Please try again."
+        #flash message could go here: "Sorry, this email/username cannot be used. Please try"
         redirect to '/signup'
       end
     end
@@ -48,9 +48,10 @@ class UsersController < ApplicationController
     
       get "/logout" do
         if logged_in?
-          session.destroy
+          session.clear
           redirect "/login"
         else
+          #flash message could go here. "Sorry, but you are not logged in."
           redirect "/"
         end
       end
