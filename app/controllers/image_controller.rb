@@ -25,10 +25,11 @@ class ImagesController < ApplicationController
       if !logged_in?
         redirect "/login"
       else
-        if @image = current_user.images.find(params[:id])
+        @image = Image.find(params[:id])
+        if @image.user_id == current_user.id
           erb :"images/image_edit"
         else
-          redirect to '/images'
+          redirect '/images'
         end
       end
     end
