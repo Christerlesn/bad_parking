@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     
   get '/signup' do
     if logged_in?
-      redirect "/images"
+      redirect "/"
     else
       erb :'users/sign_up'
     end
@@ -14,10 +14,17 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-      @user.save
-      session[:user_id] = @user.id
-      redirect to '/images'
+      @verified_username = User.find_by(:username => params[:username])
+      @verified_email = User.find_by(:email => params[:email])
+      if !@verified_username && !@verified_email
+        @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+        @user.save
+        session[:user_id] = @user.id
+        redirect to '/images'
+      else
+        #flash message could go here: "Sorry, this email/username cannot be used. Please try again."
+        redirect to '/signup'
+      end
     end
   end
     
