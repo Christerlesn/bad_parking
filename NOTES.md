@@ -1,6 +1,8 @@
-Websites I used to help me
+Links I used to help me
 
+https://gist.github.com/runemadsen/3905593
 https://github.com/carrierwaveuploader/carrierwave
+https://github.com/codetrotters/sinatra-carrierwave
 
 
 MODELS
