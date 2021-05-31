@@ -32,4 +32,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the MercedEvent project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct].
+Everyone interacting in the BadParking project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct].
